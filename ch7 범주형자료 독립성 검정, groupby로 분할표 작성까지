@@ -1,0 +1,22 @@
+독립적인지 알아볼 때 쓰거나 열과 행의 합이 둘 다 랜덤일 때 쓴다
+
+
+
+
+<p>독립성 검정을 위한 가설은 다음과 같다.</p>
+<p>$H_0$: 흡연 정도와 운동 빈도는 서로 독립이다.</p>
+<p>$H_1$: $H_0$가 아니다.</p>
+
+
+
+
+
+survey = pd.read_csv("https://raw.githubusercontent.com/shkalak51/SNU-Statistical-experiment/master/survey.txt", sep = " ")
+y = survey.groupby(['Smoke','Exer']).size()
+table = y.unstack()
+
+g, p, dof, expctd = chi2_contingency(table)
+print("카이제곱 통계량 = %f, 유의확률 = %f" % (g, p))
+
+
+검정 결과 검정 통계량의 값은 5.4885이고 유의확률은 0.4828로 계산되었다. 따라서 유의수준 5%에서 귀무가설을 기각할 수 없으며 따라서 학생들의 운동 빈도와 흡연 정도는 서로 독립이라고 말할 수 있다.

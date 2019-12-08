@@ -7,8 +7,6 @@ $$H_{0}: \mu = xbar \quad \quad H_{1}: \mu > xbar $$</p>
 
 
 
-from scipy.stats import ttest_1samp
-
 X = [1, 1, 1]
 
 t = ttest_1samp(X, 문제에서 준 xbar)

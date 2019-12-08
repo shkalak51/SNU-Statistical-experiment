@@ -1,0 +1,50 @@
+<p>기존 ~~의 모평균을 $\mu_1$, 새 ~~의 모평균을 $\mu_2$라고 하면 검정을 위 한 가설은 다음과 같다.</p>
+$$H_{0}: \mu_{1} - \mu_{2} = 0 \quad \quad H_{1}: \mu_{1} - \mu_{2} > 0$$
+
+먼저 각 그룹별 ~~의 평균을 비교해보자. 
+
+
+
+paint = pd.read_csv("paint.txt", sep = " ")
+paint_by_group = paint.groupby(by = 'group')
+display(paint_by_group.mean())
+
+
+
+
+
+
+<p>독립 이표본 평균 검정에 앞서 등분산 여부에 관한 모분산 검정을 먼저 시행한다. 검정하고자 하는 가설은 다음과 같다.</p>
+$$H_{0}: \sigma_1^2/\sigma_2^2 = 1 \quad\text{vs} \quad H_{1}: \sigma_1^2/\sigma_2^2 \neq 1$$
+
+
+
+
+
+group1 = paint[paint['group'] == 1]['time']
+group2 = paint[paint['group'] == 2]['time']
+
+var_test(group1, group2)
+
+print("F 통계량 = %f, 유의확률 = %f"% (F_result[0],F_result[3]))
+
+
+
+
+
+등분산 여부 검정 결과, 검정 통계량은 1.833이고 유의확률은 0.38이었다. 따라서 주어진 유의수준 5%에서 두 모집단의 분산이 같다는 귀무가설을 기각할 수 없다.
+
+따라서 등분산을 가정한 독립 이표본 평균 검정 결과는 다음과 같다.
+
+
+
+
+
+t_equal = ttest_ind(group1, group2, equal_var = True)
+print("T 통계량 = %f, 유의확률 = %f"%t_equal)
+
+
+
+
+
+이 때 pvalue=0.0114는 양측 유의확률이다. 대칭 분포에서 단측 유의확률은 양측 유의확률을 2로 나눈 값이므로, 이 경우 단측 유의확률은 0.005694이다. 검정통계량은 2.818이고 유의확률은 0.005694로 나타났다. 이는 주어진 유의수준 0.05보다 작기 때문에 귀무가설을 기각할 수 있다. 따라서 새 페인트의 건조시간은 기존 페인트의 건조시간 보다 더 빠르다고 말할 수 있다.

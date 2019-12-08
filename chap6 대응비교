@@ -1,0 +1,10 @@
+<p>[풀이] $D_i = X_i - Y_i$ 라고 정의하면 주어진 문제에 대한 가설은 다음과 같다. 
+$$H_{0}: \mu_{D} = 0 \quad \quad H_{1}: \mu_{D} \neq 0$$</p>
+
+
+
+paired = pd.read_csv("paired.txt", sep=" ")
+paired_t = ttest_rel(paired['purple'], paired['green'])
+print("T 통계량 = %f, 유의확률 = %f"%paired_t)
+
+검정통계량의 값은 6.3381이고 유의확률은 0.00002584로 매우 작기 때문에 귀무가설을 기각할 수 있다. 따라서 보라색과 초록색 사이에는 감정변화에 미치는 영향이 존재한다고 볼 수 있다.

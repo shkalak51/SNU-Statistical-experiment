@@ -1,0 +1,5 @@
+X = [,,,]
+n = len(X)
+xbar = X.mean()
+width = t.ppf(0.975, n-1) * np.std(X, ddof=1) / np.sqrt(n)
+print(xbar-width, xbar+width)

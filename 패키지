@@ -1,3 +1,23 @@
 from scipy.stats import ttest_1samp
 import numpy as np
 from scipy.stats import t
+import pandas as pd
+from scipy.stats import ttest_rel
+from scipy.stats import f
+from scipy.stats import ttest_ind
+from statsmodels.stats.proportion import proportions_ztest
+from scipy.stats import chi2_contingency
+
+
+def var_test(sample1, sample2):
+    n1 = len(sample1)
+    n2 = len(sample2)
+    S1 = np.var(sample1, ddof=1)
+    S2 = np.var(sample2, ddof=1)
+    dfn = n1 - 1
+    dfd = n2 - 1
+    F = S1 / S2
+    pval = 2*min(f.cdf(F, dfn = dfn, dfd = dfd),1-f.cdf(F, dfn = dfn, dfd = dfd))
+    
+    ##print("F test to compare two variances: F = %s, num df = %s, denom df = %s, p-value = %s" % (round(F,5),dfn,dfd,round(pval,5)))
+    return [F, dfn, dfd, pval]

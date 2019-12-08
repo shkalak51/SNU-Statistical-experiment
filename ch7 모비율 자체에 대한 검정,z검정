@@ -1,0 +1,20 @@
+proportions_ztest(count, nobs, value, prop_var)
+count: 성공 횟수
+nobs: 전체 횟수
+value: 비교할 성공률(귀무가설에서 주어지는 값)
+prop_var: 분산에 들어갈 성공률 = 비교할 성공률 = value
+
+를 사용한다고 한다...
+
+
+
+
+
+<p>가설은 다음과 같다.</p>
+<p>$H_0$: A팀의 승률이 5할이다.</p>
+<p>$H_1$: A팀의 승률이 5할이 아니다.</p>
+
+z, p = proportions_ztest(79, 144, value=.5, prop_var=.5)
+print("Z 통계량 = %f, 유의확률 = %f"%(z,p))
+
+유의확률이 약 0.24이므로 귀무가설을 기각하지 못해 A팀의 승률이 5할이라 말할 수 있다.
